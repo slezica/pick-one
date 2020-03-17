@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="indicator_1">#e05140</color>
+    <color name="indicator_2">#0092cc</color>
+    <color name="indicator_3">#eaa845</color>
+    <color name="indicator_4">#8abb55</color>
+    <color name="indicator_5">#585079</color>
+    <color name="indicator_6">#3e385a</color>
+    <color name="indicator_7">#969696</color>
+</resources>
