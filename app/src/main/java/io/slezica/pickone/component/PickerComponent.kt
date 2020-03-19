@@ -1,7 +1,11 @@
 package io.slezica.pickone.component
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.os.Build
 import android.os.Handler
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.LayoutInflater
 import androidx.core.content.ContextCompat
 import io.slezica.androidexperiments.components.Component
@@ -19,7 +23,8 @@ import kotlin.collections.set
 class PickerComponent: Component<PickerBinding>(), PickerTouchOverlay.Listener {
 
     companion object {
-        private const val HOLD_TO_SUBMIT_MS = 1500L
+        private const val SUBMIT_HOLD_MS = 1500L
+        private const val SUBMIT_VIBRATE_MS = 150L
 
         private val INDICATOR_SIZE = 1024.dp
 
@@ -88,7 +93,7 @@ class PickerComponent: Component<PickerBinding>(), PickerTouchOverlay.Listener {
             ui.indicatorLayout.unselect()
 
         } else if (winner == null) {
-            handler.postDelayed(submitResult, HOLD_TO_SUBMIT_MS)
+            handler.postDelayed(submitResult, SUBMIT_HOLD_MS)
         }
     }
 
@@ -96,9 +101,24 @@ class PickerComponent: Component<PickerBinding>(), PickerTouchOverlay.Listener {
         winner = pointers[Random().nextInt(pointers.size)]
         pointers.clear()
 
+        vibrate()
         ui.indicatorLayout.select(winner!!.id)
     }
 
     fun colorFor(pointer: Pointer) =
         ContextCompat.getColor(context, INDICATOR_COLORS[pointer.id % INDICATOR_COLORS.size])
+
+    fun vibrate() {
+        val v = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val effect = VibrationEffect
+                .createOneShot(SUBMIT_VIBRATE_MS, VibrationEffect.DEFAULT_AMPLITUDE)
+
+            v.vibrate(effect)
+
+        } else {
+            v.vibrate(SUBMIT_VIBRATE_MS)
+        }
+    }
 }
