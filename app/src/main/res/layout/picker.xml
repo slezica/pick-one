@@ -3,8 +3,7 @@
     android:id="@+id/picker_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bg_canvas">
+    android:orientation="vertical"><!-- canvas background is the window background (Theme.PickOne) -->
 
     <io.slezica.pickone.component.PickerIndicatorLayout
         android:id="@+id/indicator_layout"

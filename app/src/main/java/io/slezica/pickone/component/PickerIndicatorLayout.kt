@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.children
@@ -114,7 +115,7 @@ class PickerIndicatorLayout(context: Context, attrs: AttributeSet?): FrameLayout
     private fun setIndicatorViewDrawable(view: View, @DrawableRes resId: Int) {
         val color = ContextCompat.getColor(context, COLORS[view.id % COLORS.size])
 
-        val originalDrawable = context.getDrawable(resId)!!
+        val originalDrawable = AppCompatResources.getDrawable(context, resId)!!
         val tintedDrawable = DrawableCompat.wrap(originalDrawable.mutate())
 
         DrawableCompat.setTint(tintedDrawable, color)

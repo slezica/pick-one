@@ -76,7 +76,7 @@ class ComponentFragment<T: ViewBinding>: Fragment {
         component.viewOrNull = null
         component.onDestroyView()
 
-        if (isRemoving || activity!!.isFinishing) {
+        if (isRemoving || requireActivity().isFinishing) {
             Component.unregister(component)
             component.onDestroy()
         }
