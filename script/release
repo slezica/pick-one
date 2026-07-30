@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+
+cd "$(dirname "$0")/.."
+
+if [ -z "$KEYSTORE_PASSWORD" ]; then
+    read -r -s -p "Keystore password: " KEYSTORE_PASSWORD
+    echo
+    export KEYSTORE_PASSWORD
+fi
+
+./gradlew assembleRelease
