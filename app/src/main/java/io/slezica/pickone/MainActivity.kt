@@ -2,7 +2,6 @@ package io.slezica.pickone
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import io.slezica.pickone.anidemo.AnidemoComponent
 import io.slezica.pickone.component.PickerComponent
 
 class MainActivity : AppCompatActivity() {
