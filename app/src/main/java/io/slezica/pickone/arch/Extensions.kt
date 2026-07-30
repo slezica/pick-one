@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
@@ -24,7 +25,7 @@ fun View.startAnimation(@AnimRes animationId: Int,
                         onEnd: () -> Unit = {}) {
 
     val anim = AnimationUtils.loadAnimation(context, animationId)
-    val handler = Handler()
+    val handler = Handler(Looper.getMainLooper())
 
     val delayToAvoidCrashes = 100L // not 100% sure, has to do with removing a view on animation end
 
