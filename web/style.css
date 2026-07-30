@@ -53,6 +53,8 @@ h1 {
     border-radius: 22px;
     border: 1px solid var(--line);
     display: block;
+    background: #2a2a2a;
+    padding: 4px;
 }
 
 .steps {
