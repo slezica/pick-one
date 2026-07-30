@@ -57,7 +57,16 @@ class PickerTouchOverlay(context: Context, attrs: AttributeSet?): FrameLayout(co
             }
         }
 
+        if (event.actionMasked == MotionEvent.ACTION_UP) {
+            performClick()
+        }
+
         invalidate()
+        return true
+    }
+
+    override fun performClick(): Boolean {
+        super.performClick()
         return true
     }
 }

@@ -1,11 +1,11 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <!-- Fullscreen, edge-to-edge canvas. Transparent system bars over the dark
+         hex background; light (white) bar icons are set from MainActivity. -->
+    <style name="Theme.PickOne" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_canvas</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
 </resources>

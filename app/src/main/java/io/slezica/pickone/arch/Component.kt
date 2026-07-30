@@ -2,11 +2,11 @@ package io.slezica.androidexperiments.components
 
 import android.content.Context
 import android.view.LayoutInflater
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import io.slezica.pickone.arch.ComponentFragment
 import java.util.*
 
-abstract class Component<T: ViewDataBinding> {
+abstract class Component<T: ViewBinding> {
 
     companion object {
         private val idToComponent = mutableMapOf<String, Component<*>>()
@@ -29,7 +29,7 @@ abstract class Component<T: ViewDataBinding> {
 
     val id = UUID.randomUUID().toString()
 
-    internal var viewOrNull: ViewDataBinding? = null
+    internal var viewOrNull: ViewBinding? = null
     internal var contextOrNull: Context? = null
 
     @Suppress("UNCHECKED_CAST")
@@ -41,7 +41,7 @@ abstract class Component<T: ViewDataBinding> {
         get() = checkNotNull(contextOrNull)
         set(value) { contextOrNull = value }
 
-    abstract fun createView(inflater: LayoutInflater): ViewDataBinding
+    abstract fun createView(inflater: LayoutInflater): ViewBinding
 
 
     open fun onCreate() {}

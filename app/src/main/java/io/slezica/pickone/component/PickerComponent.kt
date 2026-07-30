@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Handler
+import android.os.Looper
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.os.VibratorManager
 import android.view.LayoutInflater
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import io.slezica.androidexperiments.components.Component
 import io.slezica.pickone.R
 import io.slezica.pickone.arch.dp
@@ -15,7 +19,6 @@ import io.slezica.pickone.arch.log
 import io.slezica.pickone.databinding.PickerBinding
 import io.slezica.pickone.model.Indicator
 import io.slezica.pickone.model.Pointer
-import java.util.*
 import kotlin.collections.mutableMapOf
 import kotlin.collections.set
 
@@ -39,7 +42,7 @@ class PickerComponent: Component<PickerBinding>(), PickerTouchOverlay.Listener {
         )
     }
 
-    val handler = Handler()
+    val handler = Handler(Looper.getMainLooper())
     var winner: Pointer? = null
     val pointers = mutableMapOf<Int, Pointer>()
 
@@ -51,6 +54,13 @@ class PickerComponent: Component<PickerBinding>(), PickerTouchOverlay.Listener {
         super.onCreateView()
 
         ui.touchOverlay.listener = this
+
+        // Canvas stays full-bleed behind the bars; lift the hint above the nav bar.
+        ViewCompat.setOnApplyWindowInsetsListener(ui.root) { _, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            ui.explanation.translationY = -bars.bottom.toFloat()
+            insets
+        }
 
         pointers.clear()
         winner = null
@@ -98,7 +108,7 @@ class PickerComponent: Component<PickerBinding>(), PickerTouchOverlay.Listener {
     }
 
     val submitResult = Runnable {
-        winner = pointers[Random().nextInt(pointers.size)]
+        winner = pickWinner(pointers.values)
         pointers.clear()
 
         vibrate()
@@ -109,15 +119,21 @@ class PickerComponent: Component<PickerBinding>(), PickerTouchOverlay.Listener {
         ContextCompat.getColor(context, INDICATOR_COLORS[pointer.id % INDICATOR_COLORS.size])
 
     fun vibrate() {
-        val v = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        val v = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val manager =
+                context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            manager.defaultVibrator
+        } else {
+            @Suppress("DEPRECATION")
+            context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val effect = VibrationEffect
                 .createOneShot(SUBMIT_VIBRATE_MS, VibrationEffect.DEFAULT_AMPLITUDE)
-
             v.vibrate(effect)
-
         } else {
+            @Suppress("DEPRECATION")
             v.vibrate(SUBMIT_VIBRATE_MS)
         }
     }

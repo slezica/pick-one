@@ -1,14 +1,15 @@
 package io.slezica.pickone.arch
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import androidx.fragment.app.Fragment
 import io.slezica.androidexperiments.components.Component
 
-class ComponentFragment<T: ViewDataBinding>: Fragment {
+class ComponentFragment<T: ViewBinding>: Fragment {
 
     lateinit var component: Component<T>
 
@@ -37,8 +38,8 @@ class ComponentFragment<T: ViewDataBinding>: Fragment {
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
         component.contextOrNull = context
     }
 
@@ -75,7 +76,7 @@ class ComponentFragment<T: ViewDataBinding>: Fragment {
         component.viewOrNull = null
         component.onDestroyView()
 
-        if (isRemoving || activity!!.isFinishing) {
+        if (isRemoving || requireActivity().isFinishing) {
             Component.unregister(component)
             component.onDestroy()
         }
