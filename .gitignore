@@ -10,6 +10,12 @@
 .DS_Store
 /build
 /captures
+
+# Release signing — never commit a keystore
+credentials
+*.keystore
+
 .idea
 .externalNativeBuild
 .cxx
+.kotlin
