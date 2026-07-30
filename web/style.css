@@ -113,6 +113,10 @@ a:hover { color: var(--accent); }
 .back { display: inline-block; margin-bottom: 32px; font-size: 14px; color: var(--muted); text-decoration: none; }
 .back:hover { color: var(--accent); }
 
+/* Email obfuscation: hidden odd spans are not selectable/copyable, so humans
+   copy the real address while scrapers reading the raw text get garbage. */
+.email span:nth-child(odd) { display: none; }
+
 @media (max-width: 640px) {
     .wrap { padding: 40px 20px 56px; }
     .hero { grid-template-columns: 1fr; gap: 32px; }
