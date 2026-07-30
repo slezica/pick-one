@@ -9,4 +9,7 @@ if [ -z "$KEYSTORE_PASSWORD" ]; then
     export KEYSTORE_PASSWORD
 fi
 
-./gradlew assembleRelease
+./gradlew bundleRelease
+
+echo
+echo "AAB: app/build/outputs/bundle/release/app-release.aab"
