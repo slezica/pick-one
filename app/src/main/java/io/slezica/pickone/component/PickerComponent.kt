@@ -108,10 +108,7 @@ class PickerComponent: Component<PickerBinding>(), PickerTouchOverlay.Listener {
     }
 
     val submitResult = Runnable {
-        // Pick uniformly among the fingers actually on screen. `pointers` is keyed
-        // by pointer id (which Android may leave non-contiguous), so we must choose
-        // from the values, not index the map by a random int.
-        winner = pointers.values.random()
+        winner = pickWinner(pointers.values)
         pointers.clear()
 
         vibrate()
