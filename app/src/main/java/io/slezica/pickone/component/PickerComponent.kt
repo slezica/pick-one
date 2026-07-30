@@ -15,7 +15,6 @@ import io.slezica.pickone.arch.log
 import io.slezica.pickone.databinding.PickerBinding
 import io.slezica.pickone.model.Indicator
 import io.slezica.pickone.model.Pointer
-import java.util.*
 import kotlin.collections.mutableMapOf
 import kotlin.collections.set
 
@@ -98,7 +97,10 @@ class PickerComponent: Component<PickerBinding>(), PickerTouchOverlay.Listener {
     }
 
     val submitResult = Runnable {
-        winner = pointers[Random().nextInt(pointers.size)]
+        // Pick uniformly among the fingers actually on screen. `pointers` is keyed
+        // by pointer id (which Android may leave non-contiguous), so we must choose
+        // from the values, not index the map by a random int.
+        winner = pointers.values.random()
         pointers.clear()
 
         vibrate()
