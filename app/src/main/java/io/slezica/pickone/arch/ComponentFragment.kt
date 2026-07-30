@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import androidx.fragment.app.Fragment
 import io.slezica.androidexperiments.components.Component
 
-class ComponentFragment<T: ViewDataBinding>: Fragment {
+class ComponentFragment<T: ViewBinding>: Fragment {
 
     lateinit var component: Component<T>
 
