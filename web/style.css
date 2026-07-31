@@ -30,8 +30,43 @@ header { margin-bottom: 48px; }
 h1 {
     margin: 0 0 8px;
     font-size: 34px;
+    line-height: 1.2;
     letter-spacing: -0.02em;
     font-weight: 700;
+}
+
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.title-row { margin-bottom: 8px; }
+.title-row h1 { margin-bottom: 0; }
+
+.play-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 42px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.play-badge:hover { border-color: var(--accent); color: var(--text); }
+
+.play-badge svg {
+    width: 20px;
+    height: 20px;
+    display: block;
 }
 
 .tagline {
@@ -76,7 +111,7 @@ h1 {
     content: counter(step);
     position: absolute;
     left: 0;
-    top: -2px;
+    top: 0;
     width: 28px;
     height: 28px;
     border-radius: 50%;
@@ -124,4 +159,5 @@ a:hover { color: var(--accent); }
     .hero { grid-template-columns: 1fr; gap: 32px; }
     .hero img { max-width: 260px; margin: 0 auto; }
     h1 { font-size: 28px; }
+    .play-badge { height: 38px; padding: 0 12px; gap: 8px; font-size: 14px; }
 }
