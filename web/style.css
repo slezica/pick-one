@@ -22,7 +22,7 @@ body {
 .wrap {
     max-width: 880px;
     margin: 0 auto;
-    padding: 64px 24px 80px;
+    padding: 24px 24px 80px;
 }
 
 header { margin-bottom: 48px; }
@@ -35,17 +35,15 @@ h1 {
     font-weight: 700;
 }
 
-.title-row {
+.badges {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
+    margin-bottom: 20px;
+    justify-content: right;
 }
 
-.title-row { margin-bottom: 8px; }
-.title-row h1 { margin-bottom: 0; }
-
-.play-badge {
+.badge {
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -61,9 +59,9 @@ h1 {
     white-space: nowrap;
 }
 
-.play-badge:hover { border-color: var(--accent); color: var(--text); }
+.badge:hover { border-color: var(--text); color: var(--text); }
 
-.play-badge svg {
+.badge svg {
     width: 20px;
     height: 20px;
     display: block;
@@ -159,5 +157,5 @@ a:hover { color: var(--accent); }
     .hero { grid-template-columns: 1fr; gap: 32px; }
     .hero img { max-width: 260px; margin: 0 auto; }
     h1 { font-size: 28px; }
-    .play-badge { height: 38px; padding: 0 12px; gap: 8px; font-size: 14px; }
+    .badge { height: 38px; padding: 0 12px; gap: 8px; font-size: 14px; }
 }
