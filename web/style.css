@@ -25,7 +25,7 @@ body {
     padding: 24px 24px 80px;
 }
 
-header { margin-bottom: 48px; }
+header { margin-bottom: 64px; }
 
 h1 {
     margin: 0 0 8px;
@@ -35,11 +35,25 @@ h1 {
     font-weight: 700;
 }
 
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    width: 76px;
+    height: 76px;
+    border-radius: 18px;
+    display: block;
+    flex-shrink: 0;
+}
+
 .badges {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
     justify-content: right;
 }
 
@@ -158,4 +172,6 @@ a:hover { color: var(--accent); }
     .hero img { max-width: 260px; margin: 0 auto; }
     h1 { font-size: 28px; }
     .badge { height: 38px; padding: 0 12px; gap: 8px; font-size: 14px; }
+    .brand { gap: 16px; }
+    .logo { width: 60px; height: 60px; border-radius: 14px; }
 }
