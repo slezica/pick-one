@@ -29,7 +29,7 @@ class PickerComponent: Component<PickerBinding>(), PickerTouchOverlay.Listener {
         private const val SUBMIT_HOLD_MS = 2000L
         private const val SUBMIT_VIBRATE_MS = 150L
 
-        private val INDICATOR_SIZE = 1024.dp
+        private val INDICATOR_SIZE = 1126.dp
 
         private val INDICATOR_COLORS = intArrayOf(
             R.color.indicator_1,
