@@ -26,7 +26,7 @@ import kotlin.collections.set
 class PickerComponent: Component<PickerBinding>(), PickerTouchOverlay.Listener {
 
     companion object {
-        private const val SUBMIT_HOLD_MS = 1500L
+        private const val SUBMIT_HOLD_MS = 2000L
         private const val SUBMIT_VIBRATE_MS = 150L
 
         private val INDICATOR_SIZE = 1024.dp
